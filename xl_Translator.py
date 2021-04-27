@@ -46,7 +46,7 @@ def stylin (cellToCopy,cellToPaste):
 
 
 window = tk.Tk()
-window.geometry("265x185")
+window.geometry("275x185")
 window.title("DanCo Translate")
 greeting = tk.Label(text="DanCo Translation Widget", borderwidth = 10, width = 30)
 greeting.pack(pady=7)
@@ -72,8 +72,10 @@ stringVar1.set("Select file to translate")
 stringVar2 = StringVar()
 
 def filePath():
+    stringVar1.set("Translating File...")
     path = fd.askopenfilename(initialdir = "/",title = "Select file",filetypes = (("Excel files","*.xlsx;*.xls"),("all files","*.*")))
     if path == "":
+        stringVar1.set("Select file to translate")
         pass
     elif langChoice.get() == 1:
         scanJapanese(path)
@@ -101,6 +103,7 @@ guideText2.pack()
 
 
 def scanJapanese (path):
+    stringVar1.set("Translating Japanese File...")
     inputFile = openpyxl.load_workbook(path)
     allInputSheetNames = inputFile.sheetnames
     outputSheet = outputFile.active
@@ -135,6 +138,7 @@ def scanJapanese (path):
 
 
 def scanEnglish (path):
+    stringVar1.set("Translating English File...")
     inputFile = openpyxl.load_workbook(path)
     allInputSheetNames = inputFile.sheetnames
     outputSheet = outputFile.active
